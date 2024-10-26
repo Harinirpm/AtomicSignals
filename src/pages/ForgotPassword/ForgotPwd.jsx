@@ -3,8 +3,10 @@ import React from 'react';
 import GroupImg from '../../assets/Group.png';
 import Logo from "../../assets/logo.png";
 import { Link, useNavigate } from 'react-router-dom';
+import { makeStyles } from "@mui/styles";
 
 function ForgotPwd() {
+
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [emailError, setEmailError] = React.useState(false);
@@ -22,21 +24,36 @@ function ForgotPwd() {
   const handleClick = () => {
     navigate('/resetPwd');
   }
-
+  const useStyles = makeStyles((theme) => ({
+    buttonStyle: {
+      backgroundColor: "#49C792",
+              borderRadius: "4px",
+              textTransform: "none",
+              color: "#FFFFFF",
+              fontFamily: "Poppins",
+              width: "100%",
+              height: "40px",
+              fontSize: "14px",
+              boxShadow:"none",
+              mt:"10px",
+    },
+    rootStyle : {
+      backgroundColor: "#EFEEFB",
+      width: "100vw",
+      height: "100vh",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      overflow: "hidden",
+      position: "relative",
+      padding: 0,
+      margin:"0px !important",
+    }
+  }));
+  
+  const classes = useStyles();
   return (
-    <Box
-      sx={{
-        backgroundColor: "#EFEEFB",
-        width: "97vw",
-        height: "94vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        overflow: "hidden",
-        position: "relative",
-        padding: 2,
-      }}
-    >
+    <Box className = {classes.rootStyle}>
       <Box sx={{}}>
         <img src={GroupImg} alt="groupImg" style={{ width: "100%", height: "auto" }} />
       </Box>
@@ -88,25 +105,7 @@ function ForgotPwd() {
               }
             }}
           />
-          <Button
-            variant="contained"
-            disableRipple
-  disableElevation
-            sx={{
-              backgroundColor: "#49C792",
-              borderRadius: "4px",
-              textTransform: "none",
-              color: "#FFFFFF",
-              fontFamily: "Poppins",
-              width: "100%",
-              height: "40px",
-              fontSize: "14px",
-              boxShadow:"none",
-              mt:"10px",
-              
-            }}
-            onClick={handleClick}
-          >
+          <Button variant="contained" className={classes.buttonStyle}disableRipple disableElevation onClick={handleClick}>
            Get Link
           </Button>
             <Typography sx={{ color: "#71707E", textAlign: "center",mt:"20px" }}>

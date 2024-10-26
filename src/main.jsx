@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter, useRoutes } from 'react-router-dom';
 import Routes from './router/Routes';
 import { createTheme,ThemeProvider } from '@mui/material';
+import './index.css'
 
 const theme = createTheme({
   typography:{

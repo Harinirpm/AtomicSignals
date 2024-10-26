@@ -30,7 +30,6 @@ function SideNavbar(props) {
                 <ListItemIcon>
                   {index % 2 === 0 ? <InboxIcon sx={{fontSize:"38px"}}/> : <MailIcon sx={{fontSize:"38px"}}/>}
                 </ListItemIcon>
-
               </ListItemButton>
             </ListItem>
           ))}

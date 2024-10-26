@@ -12,7 +12,7 @@ function Layout() {
         maxHeight: height * 0.98,  
             width: "100vw",
             height: "100vh",          
-        margin: "10 !important",
+        margin: "0 !important",
         padding: "0 !important",
         boxSizing:"border-box",
       }}>
