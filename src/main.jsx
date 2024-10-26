@@ -1,10 +1,23 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
+import { createRoot } from 'react-dom/client'
+import { BrowserRouter, useRoutes } from 'react-router-dom';
+import Routes from './router/Routes';
+import { createTheme,ThemeProvider } from '@mui/material';
+
+const theme = createTheme({
+  typography:{
+      fontFamily:"Poppins",
+  },
+})
+const AppRoutes = () => {
+  const element = useRoutes(Routes);
+  return element;
+}
+const root = createRoot(document.getElementById('root'));
+root.render(
+  <BrowserRouter>
+  <ThemeProvider theme={theme}>
+    <AppRoutes />
+    </ThemeProvider>
+  </BrowserRouter>,
 )
