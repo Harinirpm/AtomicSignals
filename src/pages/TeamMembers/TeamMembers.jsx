@@ -1,36 +1,28 @@
 import React from 'react'
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
+import useWindowDimensions from '../../utils/useWindowDimention/UseWindowDimention';
+import TeamMemStyles from './TeamMemStyles';
 import SideNavbar from '../../components/Navbar/SideNavbar';
-import useWindowDimensions from '../../components/useWindowDimention/UseWindowDimention';
-
 function TeamMembers() {
     const { width,height } = useWindowDimensions();
-    // const sidebarWidth = 250;
-    // const sidebarHeight = 10;
+    const sidebarWidth = 0;
+    const sidebarHeight = 0;
   return (
-
-    <Box
-    sx={{
-      backgroundColor: "#EFEEFB",
-      width: "100vw",
-      height: "100vh",
-      display: "flex",
-      overflow: "hidden",
-      position: "relative",
-      padding: 2,
-    }}
-  >
-    <SideNavbar />
+<>
+    <Box sx={TeamMemStyles.rootStyle}>
     <Box  sx={{
-        //   width: width - sidebarWidth, 
-        //   padding: 2,
-        //   height: height - sidebarHeight,
-
-        }}>
-    <Typography>Team Members</Typography>
+      width: width - sidebarWidth, 
+      padding: 0,
+      height: height - sidebarHeight,
+      
+    }}>
+        <SideNavbar />
+          <Box padding={5} sx={{ml:"60px"}}>
+            <Box>hello</Box>
     </Box>
     </Box>
+    </Box>
+    </>
   )
 }
 

@@ -1,0 +1,55 @@
+[
+    {
+      "name": "George Fernandes",
+      "designation": "Visual Designer",
+      "department": "Design",
+      "signals": "Signals Component",
+      "overallPerformance": "Progress Component",
+      "reporting": "steve",
+      "roll": "Employee",
+      "email": "georgefernandes@gmail.com",
+      "experience": "3 Yrs 4Mon",
+      "status": "Active",
+      "action": "Action Component"
+    },
+    {
+      "name": "Emilie Clarke",
+      "designation": "Visual Designer",
+      "department": "Design",
+      "signals": "Signals Component",
+      "overallPerformance": "Progress Component",
+      "reporting": "Alicia george",
+      "roll": "Employee",
+      "email": "georgefernandes@gmail.com",
+      "experience": "3 Yrs 4Mon",
+      "status": "Active",
+      "action": "Action Component"
+    },
+    {
+      "name": "Jason Dominic",
+      "designation": "Full Stack Developer",
+      "department": "Design",
+      "signals": "Signals Component",
+      "overallPerformance": "Progress Component",
+      "reporting": "steve",
+      "roll": "Employee",
+      "email": "georgefernandes@gmail.com",
+      "experience": "3 Yrs 4Mon",
+      "status": "Active",
+      "action": "Action Component"
+    },
+    {
+      "name": "Bruce Banner",
+      "designation": "Full Stack Developer",
+      "department": "Design",
+      "signals": "Signals Component",
+      "overallPerformance": "Progress Component",
+      "reporting": "steve",
+      "roll": "Employee",
+      "email": "georgefernandes@gmail.com",
+      "experience": "3 Yrs 4Mon",
+      "status": "Active",
+      "action": "Action Component"
+    }
+  ]
+  
