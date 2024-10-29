@@ -1,0 +1,20 @@
+{
+    "Departments": [
+      "AI",
+      "Frontend",
+      "FullStack",
+      "DevOps"
+    ],
+    "Designation": [
+      "SWD I",
+      "SWD II",
+      "SWD III",
+      "Cloud Engineer"
+    ],
+    "reportingTo" :[
+      "Manager",
+      "Team Lead",
+      "Ceo"
+    ]
+  }
+  

@@ -1,0 +1,19 @@
+
+{
+    "overAllPerformance" : [
+       "Impactful",
+       "Spectacular",
+       "Very Good",
+       "Good",
+       "Need to Improve",
+       "Need to Improve a Lot",
+       "Completely Away"
+    ],
+    
+    "Role" :[
+        "Employee",
+        "Manager",
+        "Admin"
+    ]
+
+}

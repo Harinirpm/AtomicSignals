@@ -1,121 +1,92 @@
-import { Box, Button, Divider, Typography, TextField } from '@mui/material';
-import React from 'react';
-import GroupImg from '../../assets/Group.png';
-import Logo from "../../assets/logo.png";
-import { Link, useNavigate } from 'react-router-dom';
-import { makeStyles } from "@mui/styles";
+import { Box, Button, Typography, TextField } from "@mui/material";
+import React from "react";
+import Logo from "../../assets/Logo";
+import { Link, useNavigate } from "react-router-dom";
+import ForgotPwdStyles from "./ForgotPwdStyles";
+import BgImg from "../../assets/BackgroundImg";
 
 function ForgotPwd() {
+  const [email, setEmail] = React.useState("");
+  const [emailError, setEmailError] = React.useState(true); // Initially invalid
 
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const [emailError, setEmailError] = React.useState(false);
-  const [passwordError, setPasswordError] = React.useState(false);
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-    setEmailError(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.target.value));
-  };
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-    setPasswordError(e.target.value.length < 6);
-  };
   const navigate = useNavigate();
+
+  // Email validation
+  const handleEmailChange = (e) => {
+    const newEmail = e.target.value;
+    setEmail(newEmail);
+    setEmailError(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(newEmail));
+  };
+
+  // Handle 'Get Link' click
   const handleClick = () => {
-    navigate('/resetPwd');
-  }
-  const useStyles = makeStyles((theme) => ({
-    buttonStyle: {
-      backgroundColor: "#49C792",
-              borderRadius: "4px",
-              textTransform: "none",
-              color: "#FFFFFF",
-              fontFamily: "Poppins",
-              width: "100%",
-              height: "40px",
-              fontSize: "14px",
-              boxShadow:"none",
-              mt:"10px",
-    },
-    rootStyle : {
-      backgroundColor: "#EFEEFB",
-      width: "100vw",
-      height: "100vh",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      overflow: "hidden",
-      position: "relative",
-      padding: 0,
-      margin:"0px !important",
+    if (!emailError) {
+      navigate("/resetPwd");
     }
-  }));
-  
-  const classes = useStyles();
+  };
+
   return (
-    <Box className = {classes.rootStyle}>
-      <Box sx={{}}>
-        <img src={GroupImg} alt="groupImg" style={{ width: "100%", height: "auto" }} />
+    <Box sx={ForgotPwdStyles.rootStyle}>
+      <Box sx={ForgotPwdStyles.rootImg}>
+        <BgImg style={ForgotPwdStyles.bgImg} />
       </Box>
-      <Box
-        sx={{
-          position: "absolute",
-          display: "flex",
-          flexDirection: "column",
-          maxWidth: "90vw",
-          width: { xs: "90%", sm: "300px", md: "350px" },
-          height: "auto",
-          backgroundColor: "#FFFFFF",
-          borderRadius: "8px",
-          boxShadow: "0px 0px 8px 10px #0000000A",
-          padding: "30px",
-          overflow: "auto",
-        }}
-      >
+      <Box sx={ForgotPwdStyles.container}>
         <Box sx={{ mb: 2 }}>
-          <img src={Logo} alt="logo" style={{ maxWidth: "100%", height: "auto" }} />
+          <Logo style={{ height: "auto" }} />
         </Box>
-        <Typography sx={{ color: "#353448", fontWeight: "bold", fontSize: "20px", mb: 1 }}>
-        Forgot Password
-        </Typography>
-        <Typography sx={{ fontSize: "14px", color: "#71707E", mb: 2,  }}>
-        Provide us the registered email to reset your password.
+        <Typography sx={ForgotPwdStyles.header}>Forgot Password</Typography>
+        <Typography sx={ForgotPwdStyles.subHeader}>
+          Provide us the registered email to reset your password.
         </Typography>
 
-        <Box component="form" noValidate autoComplete="off" sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-          <label style={{ fontFamily: "Poppins", color: "#484759",fontSize:"12px" }}>Email</label>
+        {/* Forgot Password Form */}
+        <Box component="form" noValidate autoComplete="off" sx={ForgotPwdStyles.form_Box}>
+          <label
+            style={{
+              fontFamily: "Poppins",
+              color: "#484759",
+              fontSize: "12px",
+            }}
+          >
+            Email
+          </label>
           <TextField
             type="email"
             value={email}
             onChange={handleEmailChange}
             error={emailError}
-            helperText={emailError ? 'Enter a valid email' : ''}
+            helperText={emailError ? "Enter a valid email" : ""}
             placeholder="atomicsignals@gmail.com"
-            sx={{
-             "& .MuiOutlinedInput-root": {
-                height: "40px",
-                mt:"-10px",
-                padding:"0"
-              },
-              "& .MuiOutlinedInput-input": {
-                padding:"10",
-                height:"40px",
-                boxSizing: "border-box",
-
-              }
-            }}
+            sx={ForgotPwdStyles.textField}
           />
-          <Button variant="contained" className={classes.buttonStyle}disableRipple disableElevation onClick={handleClick}>
-           Get Link
+
+          {/* Get Link Button */}
+          <Button
+            variant="contained"
+            sx={ForgotPwdStyles.buttonStyle_contained}
+            disableRipple
+            disableElevation
+            onClick={handleClick}
+            disabled={emailError} // Button enabled only if email is valid
+          >
+            Get Link
           </Button>
-            <Typography sx={{ color: "#71707E", textAlign: "center",mt:"20px" }}>
+
+          <Typography sx={ForgotPwdStyles.footerText}>
             Remembered the password?
-              <Link to="/login" style={{ color: "#353448", fontFamily: "Poppins", fontSize: "14px", marginLeft: "5px" }}>
-                Login
-              </Link>
-            </Typography>
-          
-         
+            <Link
+              to="/login"
+              style={{
+                color: "#353448",
+                fontFamily: "Poppins",
+                fontSize: "14px",
+                marginLeft: "5px",
+                textAlign: "right",
+              }}
+            >
+              Login
+            </Link>
+          </Typography>
         </Box>
       </Box>
     </Box>
