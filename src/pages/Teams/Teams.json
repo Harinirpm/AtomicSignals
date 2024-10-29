@@ -1,5 +1,6 @@
 [
     {
+      "id" :1,
       "name": "George Fernandes",
       "designation": "Visual Designer",
       "department": "Design",
@@ -13,6 +14,7 @@
       "action": "Action Component"
     },
     {
+      "id" : 2,
       "name": "Emilie Clarke",
       "designation": "Visual Designer",
       "department": "Design",
@@ -26,6 +28,7 @@
       "action": "Action Component"
     },
     {
+      "id" : 3,
       "name": "Jason Dominic",
       "designation": "Full Stack Developer",
       "department": "Design",
@@ -39,6 +42,7 @@
       "action": "Action Component"
     },
     {
+      "id" : 4,
       "name": "Bruce Banner",
       "designation": "Full Stack Developer",
       "department": "Design",

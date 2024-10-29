@@ -7,7 +7,9 @@ import ButtonData from "../../atoms/CustomButton/ButtonData.json"
 function Filters() {
   const [active, setActive] = useState(null);
   const [activeRole, setActiveRole] = useState(null);
-  // Button click condition
+  const [department, setDepartment] = useState("");
+  const [designation, setDesignation] = useState("");
+  const [reportingTo, setReportingTo] = useState("");
   const handleSelect = (index) => {
     setActive(index);
   };
@@ -101,27 +103,36 @@ function Filters() {
         <Box sx={{ml:"20px"}}>
         <Typography sx={FiltersStyles.subHeader}>Department</Typography>
           <Dropdown
-        options={dropDownData.Departments}  
-        placeholder="Select" 
-        label="My Dropdown"
+        options={dropDownData.Departments} 
+        value={department}
+        selectedValue={department}   
+        setSelectedValue={setDepartment}
+        placeholder="Select Department" 
+        label="Select"
       />
         </Box>
         <Box sx={{ml:"20px",mb:"10px"}}>
         <Typography sx={FiltersStyles.subHeader}>Designation</Typography>
           <Dropdown
-        options={dropDownData.Designation}  
+        options={dropDownData.Designation} 
+        value={designation}
+              selectedValue={designation}
+              setSelectedValue={setDesignation} 
         placeholder="Select" 
-        label="My Dropdown"
+        label="Select"
       />
         </Box>
-        <Box sx={{ml:"20px",mb:"20px"}}>
+        <Box sx={{ml:"20px",mb:"10px"}}>
         <Typography sx={FiltersStyles.subHeader}>Reporting to</Typography>
-        <TextField
-            type="text"
-            placeholder="Name"
-            sx={FiltersStyles.textField}
-          />
-          </Box>
+          <Dropdown
+         options={dropDownData.reportingTo}
+         value={reportingTo}
+         selectedValue={reportingTo}
+         setSelectedValue={setReportingTo} 
+        placeholder="Manager Name" 
+        label="Select"
+      />
+        </Box>
           <Box sx={{ml:"20px",mb:"20px"}}>
         <Typography sx={FiltersStyles.subHeader}>Role</Typography>
           {ButtonData.Role.map((role,idx) => (
@@ -144,7 +155,7 @@ function Filters() {
         </Box>
         
       </Box>
-      <Box sx={{ display: 'flex', justifyContent: 'space-around', padding: '13px', mt: 'auto',gap:"10px" }}>
+      <Box sx={FiltersStyles.buttonBox}>
         <Button variant='contained'sx={{width:"50%"}}>Apply filter</Button>
         <Button variant='outlined' sx={{width:"50%"}}>Reset</Button>
       </Box>

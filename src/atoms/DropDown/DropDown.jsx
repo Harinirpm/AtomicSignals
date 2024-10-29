@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import MenuItem from '@mui/material/MenuItem';
@@ -10,7 +10,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 function Dropdown({ options = [], placeholder = "Select...", label = "Dropdown",selectedValue,  
   setSelectedValue }) {
   const theme = useTheme();
-  const [selectedOptions, setSelectedOptions] = React.useState([]);
+  const [selectedOptions, setSelectedOptions] =useState([]);
 
   const handleChange = (event) => {
     const value = event.target.value;
@@ -47,7 +47,7 @@ function Dropdown({ options = [], placeholder = "Select...", label = "Dropdown",
           inputProps={{ 'aria-label': label }}
           IconComponent={KeyboardArrowDownIcon}
           sx={{
-            height: "40px",
+            height: "35px",
             maxWidth: "480px",
             width: "100%", 
             borderRadius: "5px", 

@@ -5,6 +5,9 @@ import TeamMembers from '../pages/TeamMembers/TeamMembers';
 import routes from '../utils/routesObj';
 import AddMemberStyles from '../components/AddMembers/AddMembersStyles';
 import AddMembers from '../components/AddMembers/AddMembers';
+import Profile from '../pages/Profile/Profile';
+import Notification from '../pages/Notification/Notification';
+import Feedback from '../pages/Feedback/Feedback';
 const SignUp = lazy(() => import('../pages/SignUp/SignUp'));
 const Login = lazy(() => import('../pages/Login/Login'));
 const ForgotPwd = lazy(() => import('../pages/ForgotPassword/ForgotPwd'));
@@ -58,6 +61,14 @@ const Routes = [
             )
         },
         {
+            path: routes.profile,
+            element: (
+                <Suspense fallback={<div>Loading...</div>}>
+                    <Profile />
+                    </Suspense>
+            )
+        },
+        {
             path: routes.teams,
             element: (
                 <Suspense fallback={<div>Loading...</div>}>
@@ -86,6 +97,22 @@ const Routes = [
             element: (
                 <Suspense fallback={<div>Loading...</div>}>
                     <AddMembers />
+                    </Suspense>
+            )
+        },
+        {
+            path: routes.feedback,
+            element: (
+                <Suspense fallback={<div>Loading...</div>}>
+                    <Feedback />
+                    </Suspense>
+            )
+        },
+        {
+            path: routes.notification,
+            element: (
+                <Suspense fallback={<div>Loading...</div>}>
+                    <Notification />
                     </Suspense>
             )
         },

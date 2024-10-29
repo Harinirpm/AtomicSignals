@@ -70,25 +70,6 @@ const AnchorTemporaryDrawer = ({ isOpen, toggleDrawer, contentType, setMembers }
       >
         <Box sx={{ paddingTop: 3 }}>{renderContent()}</Box>
       </Drawer>
-{/* 
-      {isOpen && (
-        <IconButton
-          onClick={() => toggleDrawer(false)}
-          sx={{
-            position: "fixed",
-            top: 16,
-            right: 480,
-            backgroundColor: "#ffffff",
-            color: "black",
-            boxShadow: 1,
-            borderRadius: "50%",
-            zIndex: 2000,
-            "&:hover": { backgroundColor: "#e0e0e0" },
-          }}
-        >
-          <CloseIcon />
-        </IconButton>
-      )} */}
       </Box>
     </>
   );

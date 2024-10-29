@@ -13,7 +13,9 @@ import Avatar1 from "../../assets/avatar2.jpeg";
 import NameWithAvatar from "../../atoms/Avatar/NameWithAvatar";
 import IosSwitch from '../../atoms/IosSwitch/IosSwitch';
 import AddFeedback from "../../atoms/CustomButton/AddFeedback";
-
+import Teams from "../../pages/Teams/Teams.json";
+import CustomTableStyles from "../CustomTable/CustomTableStyles";
+import { useState } from 'react';
 const columns = [
   { id: 'name', label: 'Name', minWidth: 210 },
   { id: 'designation', label: 'Designation', minWidth: 210 },
@@ -27,11 +29,22 @@ const columns = [
   { id: 'status', label: 'Status', minWidth: 210, align: 'left' },
   { id: 'action', label: 'Action', minWidth: 210, align: 'left', stickyRight: true },
 ];
-
 function CustomTable({ members }) {
+  const combinedMembers = [...Teams, ...members];
+  // const [combinedMembers, setCombinedMembers] = useState([...Teams, ...members]);
+
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
- 
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+
+  const handleEditClick = (memberId) => {
+    const memberToEdit = combinedMembers.find((member) => member.id === memberId);
+    setEditableMember(memberToEdit);
+  };
+  const handleUpdateMember = (updatedMember) => {
+    setCombinedMembers((prevMembers) =>
+      prevMembers.map((member) => (member.id === updatedMember.id ? updatedMember : member))
+    );
+  };
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -42,7 +55,7 @@ function CustomTable({ members }) {
     setPage(0);
   };
   
-  const rows = members.map((member, index) => ({
+  const rows = combinedMembers.map((member, index) => ({
     name: <NameWithAvatar name={member.name} avatarSrc={Avatar1} />,
     designation: member.designation,
     department: member.department,
@@ -53,14 +66,16 @@ function CustomTable({ members }) {
     email: member.email,
     experience: member.dateOfJoining, 
     status: <IosSwitch name={"Active"} />, 
-    //action drawer
-    action: <AddFeedback />
-  
+    action: <AddFeedback
+    memberId={member.id}
+    memberDetails={member}
+    onEdit={handleUpdateMember} 
+  />
   }));
 
   return (
-    <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-      <TableContainer sx={{ maxHeight: 480, height: 480, overflowX: 'auto', overflowY: 'auto', msScrollbarWidth: "none", scrollbarWidth: "none" }}>
+    <Paper sx={CustomTableStyles.rootStyle}>
+      <TableContainer sx={CustomTableStyles.tableContainer}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>

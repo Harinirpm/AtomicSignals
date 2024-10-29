@@ -27,7 +27,7 @@ const AddMemberStyles = {
       subHeader :{
         color:"#484759",
         fontSize:"12px",
-            mt:"20px",
+            mt:"10px",
             // mb:"10px",
       },
       label :{
@@ -37,7 +37,7 @@ const AddMemberStyles = {
       },
       textField_name :{
         "& .MuiOutlinedInput-root": {
-          height: "40px",
+          height: "35px",
           // marginTop:"10px",
           padding:"0",
           fontSize:"14px",
@@ -57,7 +57,7 @@ const AddMemberStyles = {
         },
         "& .MuiOutlinedInput-input": {
           padding:"10",
-          height:"40px",
+          height:"35px",
           boxSizing: "border-box",
           fontSize:"14px",
           
@@ -66,7 +66,7 @@ const AddMemberStyles = {
       },
       textField_email : {
         "& .MuiOutlinedInput-root": {
-          height: "40px",
+          height: "35px",
           marginTop:"-10px",
           padding:"0",
           fontSize:"14px",
@@ -85,7 +85,7 @@ const AddMemberStyles = {
         },
         "& .MuiOutlinedInput-input": {
           padding:"10",
-          height:"40px",
+          height:"35px",
           boxSizing: "border-box",
           fontSize:"14px",
         }

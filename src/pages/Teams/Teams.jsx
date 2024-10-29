@@ -170,60 +170,56 @@ const handleSnackbarClose = () => {
       </Button>
 
       {/* add member drawer*/}
-      <Box position="relative">
-      {isDrawerOpen && 
-      <IconButton
-      onClick={handleDrawerClose}
-       sx={{height:"50px",width:"50px",backgroundColor:"white",
-        zIndex:2900,
-        ml:"-490px",
-        mt:"20px",
-      }}>
-         <CloseIcon />
-      </IconButton>
-      }
+     
               <Drawer
         anchor="right"
         open={isDrawerOpen}
         onClose={handleDrawerClose}
+        BackdropProps={{
+          sx: { backgroundColor: "rgba(128, 128, 128, 10)" },
+        }}
         sx={{
           "& .MuiDrawer-paper": {
             backgroundColor: "white",
             width: 390,
           },
         }}
-      >
+        >
+        {isDrawerOpen && 
+        <IconButton
+        onClick={handleDrawerClose}
+         sx={TeamsStyles.drawerIconButton}>
+           <CloseIcon />
+        </IconButton>
+        }
         <AddMembers addMember={addMember} members={members} setMembers={setMembers} />
       </Drawer>
-      </Box>
 
       {/* filter drawer */}
-      <Box position="relative">
-      {isFilterDrawerOpen && 
-      <IconButton
-      onClick={handleFilterDrawerClose}
-       sx={{height:"50px",width:"50px",backgroundColor:"white",
-        zIndex:2900,
-        ml:"-490px",
-        mt:"20px",
-      }}>
-         <CloseIcon />
-      </IconButton>
-      }
               <Drawer
         anchor="right"
         open={isFilterDrawerOpen}
         onClose={handleFilterDrawerClose}
+        BackdropProps={{
+          sx: { backgroundColor: "rgba(128, 128, 128, 10)" },
+        }}
         sx={{
           "& .MuiDrawer-paper": {
             backgroundColor: "white",
             width: 390,
           },
         }}
-      >
+        >
+        {isFilterDrawerOpen && 
+        <IconButton
+        onClick={handleFilterDrawerClose}
+        sx={TeamsStyles.drawerIconButton}>
+           <CloseIcon />
+        </IconButton>
+        }
         <Filters />
       </Drawer>
-      </Box>
+     
 
             </Box>
           </Box>
@@ -246,16 +242,7 @@ const handleSnackbarClose = () => {
             onClose={handleSnackbarClose}
             icon={false}
             variant="filled"
-            sx={{
-              width: "100%",
-              alignItems: "center",
-              justifyContent: "center",
-              mb: "20px",
-              backgroundColor: "#CEF3E4", 
-              border: "1px solid #7FDCA4",
-              color: "black",
-              borderRadius: "10px",
-            }}
+            sx={TeamsStyles.alert}
           >
             Welcome! Have a great day
           </Alert>
