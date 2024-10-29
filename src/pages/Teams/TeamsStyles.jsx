@@ -49,5 +49,26 @@ const TeamsStyles = {
     backgroundColor: "#CACACA",
     transform: "rotate(90deg)",
   },
+  alert : {
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    mb: "20px",
+    backgroundColor: "#CEF3E4", 
+    border: "1px solid #7FDCA4",
+    color: "black",
+    borderRadius: "10px",
+  },
+  drawerIconButton :{
+    height:"50px",width:"50px",backgroundColor:"white",
+          zIndex:9900,
+          position:"fixed",
+          ml:"-100px",
+          mt:"20px",
+          "&:hover":{
+            backgroundColor:"white",
+          }
+  },
+  
 };
 export default TeamsStyles;

@@ -54,35 +54,40 @@ function AddMembers({ addMember}) {
   };
   console.log(addMember);
   const handleDrawerClose =() =>{
+    setIsDrawerOpen(false)
    navigate('/teams');
   }
   console.log(addMember);
 
   return (
     <>
-    <Box sx={{position:"relative"}}>
-      {/* {isDrawerOpen && 
-      <IconButton
-      onClick={handleDrawerClose}
-       sx={{height:"50px",width:"50px",backgroundColor:"white",
-        zIndex:2100,
-        ml:"-10px",
-        // mt:"20px",
-      }}>
-         <CloseIcon />
-      </IconButton>
-      }
+    
     <Drawer
     anchor="right"
     open={isDrawerOpen}
-    // onClose={handleDrawerClose}
+    onClose={handleDrawerClose}
+    BackdropProps={{
+      sx: { backgroundColor: "rgba(128, 128, 128, 10)" },
+    }}
     sx={{
       "& .MuiDrawer-paper": {
         backgroundColor: "white",
         width: 390,
       },
     }}
-    > */}
+    >
+      {isDrawerOpen && 
+      <IconButton
+      onClick={handleDrawerClose}
+       sx={{height:"50px",width:"50px",backgroundColor:"white",
+        zIndex: 3000,
+        position:"fixed",
+        ml:"-90px",
+        mt:"20px",
+      }}>
+         <CloseIcon />
+      </IconButton>
+      }
     <Box sx={AddMemberStyle.rootStyle}>
       <Box sx={{ ...AddMemberStyle.headerContainer, padding: "1px 0" }}>
         <Typography sx={AddMemberStyle.header}>Add Members</Typography>
@@ -181,8 +186,8 @@ function AddMembers({ addMember}) {
         </Box>
       </Box>
     </Box>
-    {/* </Drawer> */}
-    </Box>
+    </Drawer>
+  
     </>
   );
 }

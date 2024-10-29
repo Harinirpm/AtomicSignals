@@ -5,7 +5,7 @@ import SideNavbar from "../Navbar/SideNavbar";
 function Layout() {
   const { height, width } = useWindowDimensions();
   const location = useLocation();
-  const withNavbar = ['/teams',];
+  const withNavbar = ['/profile','/teams','/feedback','/notification'];
   const showNavbar = withNavbar.some((path) => location.pathname.startsWith(path));
   return (
     <>

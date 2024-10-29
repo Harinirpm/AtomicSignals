@@ -3,7 +3,8 @@
       "AI",
       "Frontend",
       "FullStack",
-      "DevOps"
+      "DevOps",
+      "GenAI"
     ],
     "Designation": [
       "SWD I",
@@ -15,6 +16,12 @@
       "Manager",
       "Team Lead",
       "Ceo"
+    ],
+    "role":[
+      "Employee",
+      "manager",
+      "developer",
+      "leader"
     ]
   }
   

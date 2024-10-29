@@ -1,5 +1,5 @@
 import { Typography, Box, Divider, Button, TextField } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FiltersStyles from "../Filters/FiltersStyles";
 import Dropdown from "../../atoms/DropDown/DropDown";
 import dropDownData from "../../atoms/DropDown/DropDownData.json";
@@ -8,25 +8,54 @@ import CustomDatePicker from "../../atoms/CustomDatePicker/CustomDatePicker";
 import Chip from '@mui/material/Chip';
 import Avatar1 from "../../assets/avatar2.jpeg"
 import Avatar from '@mui/material/Avatar';
-function EditMembers() {
+import EditMemberStyles from "./EditMemberStyles";
+function EditMembers({ member = {}, onSubmit, onClose }) {
   const [email, setEmail] = React.useState("");
   const [emailError, setEmailError] = React.useState(false);
+  const [formData, setFormData] = useState({
+    name: member.name || "",
+    email: member.email || "",
+    dateOfJoining: member.dateOfJoining || "",
+    department: member.department || "",
+    designation: member.designation || "",
+    role: member.role || "",
+    reportingTo: member.reportingTo || ""
+  });
 
+  useEffect(() => {
+    setFormData({
+      name: member.name || "",
+      email: member.email || "",
+      dateOfJoining: member.dateOfJoining || "",
+      department: member.department || "",
+      designation: member.designation || "",
+      role: member.role || "",
+      reportingTo: member.reportingTo || ""
+    });
+  }, [member]);
+
+    // handle change for text fields
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    };
 
   //validating email
   const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-    setEmailError(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.target.value));
+    const email = e.target.value;
+    setEmailError(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email));
+    setFormData((prevData) => ({
+      ...prevData,
+      email: email,
+    }));
   };
-  // Button click condition
-  const handleSelect = (index) => {
-    setActive(index);
-  };
-  const handleRoleClick = (index) => {
-    setActiveRole(index);
-  };
-  const handleClick = () => {
-    console.info('You clicked the Chip.');
+  const handleSubmit = () => {
+    if (!emailError) {
+      onSubmit(formData); 
+    }
   };
 
   const handleDelete = () => {
@@ -40,8 +69,6 @@ function EditMembers() {
         <Typography sx={AddMemberStyle.header}>Edit Members</Typography>
         <Divider sx={AddMemberStyle.divider} />
       </Box>
-      {/* body
-       */}
       <Box sx={AddMemberStyle.container}>
         {/* Name field */}
         <Box sx={AddMemberStyle.body}>
@@ -49,10 +76,13 @@ function EditMembers() {
             Name<span style={{ color: "red" }}>*</span>
           </Typography>
           <TextField
-            type="text"
-            placeholder="Name"
-            sx={AddMemberStyle.textField_name}
-          />
+  type="text"
+  name="name"
+  value={formData.name}
+  onChange={handleChange}
+  placeholder="Name"
+  sx={AddMemberStyle.textField_name}
+/>
           {/* email field */}
           <Box sx={{ mt: "10px" }}>
             <Typography sx={AddMemberStyle.label}>
@@ -60,8 +90,11 @@ function EditMembers() {
             </Typography>
             <TextField
               type="email"
-              value={email}
+               name="email"
+              value={formData.email}
               onChange={handleEmailChange}
+              // value={email}
+              // onChange={handleEmailChange}
               error={emailError}
               helperText={emailError ? "Enter a valid email" : ""}
               placeholder="atomicsignals@gmail.com"
@@ -80,6 +113,9 @@ function EditMembers() {
             {/* <CustomDatePicker /> */}
             <TextField
             type="date"
+            name="dateOfJoining"
+              value={formData.dateOfJoining}
+              onChange={handleChange}
             placeholder="Name"
             sx={AddMemberStyle.textField_date}
           />
@@ -101,6 +137,8 @@ function EditMembers() {
           </Typography>
           <Dropdown
             options={dropDownData.Departments}
+            value={formData.department}
+            onChange={(value) => setFormData({ ...formData, department: value })}
             placeholder="Select"
             label="My Dropdown"
           />
@@ -112,7 +150,22 @@ function EditMembers() {
           </Typography>
           <Dropdown
             options={dropDownData.Designation}
+            value={formData.designation}
+            onChange={(value) => setFormData({ ...formData, designation: value })}
             placeholder="Select"
+            label="My Dropdown"
+          />
+        </Box>
+        <Box sx={{ ml: "20px", mb: "10px",mt:"-10px" }}>
+          {/* reporting */}
+          <Typography sx={AddMemberStyle.dropDownHeader}>
+            Role<span style={{ color: "red" }}>*</span>
+          </Typography>
+          <Dropdown
+            options={dropDownData.role}
+            value={formData.role}
+            onChange={(value) => setFormData({ ...formData, role: value })}
+            placeholder="Manager Name"
             label="My Dropdown"
           />
         </Box>
@@ -123,31 +176,28 @@ function EditMembers() {
           </Typography>
           <Dropdown
             options={dropDownData.reportingTo}
+            value={formData.reportingTo}
+            onChange={(value) => setFormData({ ...formData, reportingTo: value })}
             placeholder="Manager Name"
             label="My Dropdown"
           />
         </Box>
+        
       </Box>
       
        <Chip
-       sx={{ml:"20px",backgroundColor:"#F5F5F5",border:"1px solid #CACACA",height:"25px"}}
+       sx={EditMemberStyles.chip}
         avatar={<Avatar alt="Natacha" src={Avatar1} sx={{height:"10px",width:"10px"}}/>}
         label="Steven"
         onDelete={handleDelete}
       />
       <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-around",
-          padding: "16px",
-          mt: "auto",
-          gap: "10px",
-        }}
+        sx={EditMemberStyles.buttonBox}
       >
-        <Button variant="contained" sx={{ width: "50%" }}>
-          Solve
+        <Button variant="contained" sx={{ width: "50%" }} onClick={handleSubmit}>
+          Save
         </Button>
-        <Button variant="outlined" sx={{ width: "50%" }}>
+        <Button variant="outlined" sx={{ width: "50%" }}  onClick={onClose}>
           Cancel
         </Button>
       </Box>
